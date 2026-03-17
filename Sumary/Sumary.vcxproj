@@ -124,11 +124,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="SalariedCommissionEmployee.cpp" />
     <ClCompile Include="SalariedEmployee.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Employee.h" />
     <ClInclude Include="SalariedCommissionEmployee.h" />
     <ClInclude Include="SalariedEmployee.h" />
   </ItemGroup>

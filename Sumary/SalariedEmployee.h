@@ -17,6 +17,8 @@ public:
 
 	double Earnings() const;
 	std::string toString() const;
+
+	virtual ~SalariedEmployee() = default;
 private:
 	std::string name{};
 	double salary = 0.0;

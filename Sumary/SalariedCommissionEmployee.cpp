@@ -1,6 +1,6 @@
 #include "SalariedCommissionEmployee.h"
 
-SalariedCommissionEmployee::SalariedCommissionEmployee(std::string name, double salary, double sales, double commissionRate) : SalariedEmployee (name, salary) {
+SalariedCommissionEmployee::SalariedCommissionEmployee(std::string name, double salary, double taxRate, int joinDay, int joinMounth, int joinYear, double sales, double commissionRate) : SalariedEmployee (name, salary, taxRate, joinDay, joinMounth, joinYear) {
 	SetSales(sales);
 	SetCommissionRate(commissionRate);
 }
@@ -37,9 +37,17 @@ double SalariedCommissionEmployee::GetCommissionRate() const {
 	return commissionRate;
 }
 
-double SalariedCommissionEmployee::Earnings() const {
-	return SalariedEmployee::Earnings() + GetSales() + GetCommissionRate();
+void SalariedCommissionEmployee::UpComissionRate(double plusCommissionRate) {
+	commissionRate += plusCommissionRate;
+}
+double SalariedCommissionEmployee::Earnings(int nowYear) const {
+	return SalariedEmployee::Earnings(nowYear) + GetSales() * GetCommissionRate() - GetSales() * GetCommissionRate() * taxRate / 100;
 }
 std::string SalariedCommissionEmployee::toString() const {
 	return std::format("{}Продажи: {}\nПроцент: {}\n", SalariedEmployee::toString(), sales, commissionRate);
+}
+
+std::ostream& operator<< (std::ostream& out, const SalariedCommissionEmployee& obj) {
+	out << obj.toString();
+	return out;
 }
